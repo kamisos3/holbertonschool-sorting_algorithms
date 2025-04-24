@@ -18,24 +18,24 @@ void insertion_sort_list(listint_t **list)
 	{
 		temp = current;
 		current = current->next;
+
 		while (current->prev && current->n < current->prev->n)
 		{
 			listint_t *prev = current->prev;
 
 			if (prev->prev)
-				prev->prev->next = current;
+				prev->prev->next = temp;
 			else
-				*list = current;
-			if (current->next)
-				current->next->prev = prev;
+				*list = temp;
+			if (temp->next)
+				temp->next->prev = prev;
 
-			current->prev = prev->prev;
-			prev->next = current->next;
+			temp->prev = prev->prev;
+			prev->next = temp->next;
 			current->next = prev;
-			prev->prev = current;
+			prev->prev = temp;
 
 			print_list(*list); /*Print list after each swap*/
 		}
-		current = temp;
 	}
 }
