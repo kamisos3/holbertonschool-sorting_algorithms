@@ -8,34 +8,35 @@
 */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current, *temp;
+	listint_t *cur, *prev, *next;
 
-	if (!list || !*list || !(*list)->next)
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	current = (*list)->next;
-	while (current)
+	cur = (*list)->next;
+	while (cur != NULL)
 	{
-		temp = current;
-		current = current->next;
-
-		while (current->prev && temp->n < current->prev->n)
+		next = cur->next;
+		while (cur->prev != NULL && cur->n < cur->prev->n)
 		{
-			listint_t *prev = temp->prev;
+			prev = cur->prev;
+
+			prev->next = cur->next;
+			if (cur->next)
+				cur->next->prev = prev;
+
+			cur->prev = prev->prev;
+			cur->next = prev;
 
 			if (prev->prev)
-				prev->prev->next = temp;
+				prev->prev->next = cur;
 			else
-				*list = temp;
-			if (temp->next)
-				temp->next->prev = prev;
+				*list = cur;
 
-			temp->prev = prev->prev;
-			prev->next = temp->next;
-			current->next = prev;
-			prev->prev = temp;
+			prev->prev = cur;
 
-			print_list(*list); /*Print list after each swap*/
+			print_list(*list);
 		}
+		cur = next;
 	}
 }
