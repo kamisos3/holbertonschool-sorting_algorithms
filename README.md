@@ -19,7 +19,6 @@ This project demonstrates several sorting algorithms, including Bubble Sort, Ins
 - void insertion_sort_list(listint_t **list): Implementation of the Insertion Sort algorithm for doubly linked lists.  
 - void selection_sort(int *array, size_t size): Implementation of the Selection Sort algorithm.  
 - void quick_sort(int *array, size_t size): Implementation of the Quick Sort algorithm.  
-- void print_array(const int *array, size_t size): Utility functions for printing arrays and linked lists.  
 
 ▶ Algorithms  
 
@@ -33,4 +32,4 @@ This project demonstrates several sorting algorithms, including Bubble Sort, Ins
 To compile the code, you can use the `gcc` compiler. Here’s an example command to compile the Bubble Sort implementation:  
 
 ```bash  
-gcc -o bubblesort bubblesort.c print.c -I.
+gcc -o 1-bubble_sort 1-bubble_sort.c print_array.c -I.
